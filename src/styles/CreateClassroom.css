@@ -1,0 +1,53 @@
+/* src/components/CreateClassroom.css */
+
+.create-classroom {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.create-classroom h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.create-classroom form {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-classroom label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.create-classroom input,
+.create-classroom textarea {
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.create-classroom textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.create-classroom button {
+  padding: 10px;
+  background-color: #219ebc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.create-classroom button:hover {
+  background-color: #1a7c9c;
+}

@@ -1,13 +1,12 @@
-// src/components/Header.js
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Header.css";
+import "../styles/Header.css";
 
 function Header({ isAuthenticated, onSignOut }) {
   return (
     <header className="header">
       <div className="header-title">
-        <Link to="/">Pointify</Link>
+        <Link to="/">BountyForum</Link>
       </div>
       <nav className="header-nav">
         <Link to="/">Courses</Link>

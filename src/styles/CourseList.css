@@ -1,0 +1,45 @@
+.my-courses-container {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.my-courses-container h2,
+.my-courses-container h3 {
+  margin-bottom: 20px;
+}
+
+.my-courses-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.my-courses-container li {
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #f3f4f6;
+  border-radius: 5px;
+}
+
+.my-courses-container {
+  padding: 20px;
+}
+
+.course-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 18px;
+}
+
+.delete-icon {
+  cursor: pointer;
+  color: red;
+  margin-left: 10px;
+}
+
+.delete-icon:hover {
+  color: darkred;
+}

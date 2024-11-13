@@ -1,32 +1,39 @@
-.create-classroom {
-  max-width: 500px;
+.join-course-container {
+  max-width: 400px;
   margin: auto;
   text-align: center;
 }
 
-.create-classroom h2 {
+.join-course-container h2 {
   margin-bottom: 20px;
 }
 
-.create-classroom form {
+.join-course-container form {
   display: flex;
   flex-direction: column;
 }
 
-.create-classroom label {
+.join-course-container label {
   margin-bottom: 8px;
 }
 
-.create-classroom input,
-.create-classroom textarea {
+.join-course-container input {
   padding: 10px;
   margin-bottom: 15px;
 }
 
-.create-classroom button {
+.join-course-container button {
   padding: 10px;
   background-color: #219ebc;
   color: #fff;
   border: none;
   cursor: pointer;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
 }

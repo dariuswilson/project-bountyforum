@@ -1,4 +1,4 @@
-// src/components/CreateClassroom.js
+// src/pages/CreateClassroom.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/CreateClassroom.css";
@@ -12,17 +12,38 @@ function CreateClassroom() {
   useEffect(() => {
     const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
     if (!isAuthenticated) {
-      // Redirect to login page if not authenticated
       navigate("/sign-in");
     }
   }, [navigate]);
 
   const handleCreateClassroom = (e) => {
     e.preventDefault();
-    alert(`Classroom Created: ${className}, ${classCode}`);
+
+    // Create new classroom object
+    const newClassroom = {
+      className,
+      classCode,
+      description,
+    };
+
+    // Save classroom to available classrooms
+    const existingClassrooms =
+      JSON.parse(localStorage.getItem("classrooms")) || [];
+    existingClassrooms.push(newClassroom);
+    localStorage.setItem("classrooms", JSON.stringify(existingClassrooms));
+
+    // Automatically add created classroom to user's joined courses
+    const joinedCourses =
+      JSON.parse(localStorage.getItem("joinedCourses")) || [];
+    joinedCourses.push(newClassroom);
+    localStorage.setItem("joinedCourses", JSON.stringify(joinedCourses));
+
+    // Reset form fields
     setClassName("");
     setClassCode("");
     setDescription("");
+
+    alert(`Classroom Created and Joined: ${className}`);
   };
 
   return (

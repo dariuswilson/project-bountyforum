@@ -12,52 +12,72 @@ function PostDetails() {
   const currentUser = localStorage.getItem("currentUser");
 
   useEffect(() => {
+    // Fetch the selected post
     const savedPosts =
       JSON.parse(localStorage.getItem(`posts_${courseCode}`)) || [];
     const selectedPost = savedPosts.find((p) => p.id === postId);
     setPost(selectedPost);
 
-    const savedReplies =
-      JSON.parse(localStorage.getItem(`replies_${postId}`)) || [];
-    setReplies(savedReplies);
-
-    const savedVotes =
-      JSON.parse(localStorage.getItem(`voteCounts_${postId}`)) || {};
-    setVoteCounts(savedVotes);
+    // Fetch replies from the backend for the specified postId
+    fetch(`http://localhost:5001/api/replies/${postId}`)
+      .then((response) => response.json())
+      .then((data) => setReplies(data))
+      .catch((error) => console.error("Error fetching replies:", error));
   }, [courseCode, postId]);
 
   const handleAddReply = (e) => {
     e.preventDefault();
     const newReplyObj = {
-      id: `${postId}-${Date.now()}`,
+      postId,
       text: newReply,
-      upvotes: 0, // Initialize upvotes for each reply
-      date: new Date().toLocaleString(),
       username: currentUser,
     };
 
-    const updatedReplies = [...replies, newReplyObj];
-    setReplies(updatedReplies);
-    localStorage.setItem(`replies_${postId}`, JSON.stringify(updatedReplies));
-    setNewReply("");
+    fetch("http://localhost:5001/api/replies", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newReplyObj),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setReplies([...replies, data]);
+        setNewReply("");
+      })
+      .catch((error) => console.error("Error saving reply:", error));
   };
 
-  const handleVote = (replyId, type) => {
+  const handleVote = async (replyId, type) => {
     const updatedReplies = replies.map((reply) => {
       if (reply.id === replyId) {
-        const currentUpvotes = reply.upvotes || 0;
         const isUpvote = type === "up";
-        const currentVote = voteCounts[replyId];
+        const newUpvotes = isUpvote ? reply.upvotes + 1 : reply.upvotes - 1;
 
-        if (
-          (currentVote === "up" && isUpvote) ||
-          (currentVote === "down" && !isUpvote)
-        ) {
-          return reply;
-        }
-
-        const newUpvotes = isUpvote ? currentUpvotes + 1 : currentUpvotes - 1;
-        voteCounts[replyId] = isUpvote ? "up" : "down";
+        // Send a POST request to save the updated upvote count
+        fetch("http://localhost:5001/api/upvotes", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            postId: postId,
+            userId: currentUser,
+            courseCode: courseCode,
+            upvotes: newUpvotes,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Upvote saved:", data);
+            // Update state only after successful save
+            setReplies((prevReplies) =>
+              prevReplies.map((r) =>
+                r.id === replyId ? { ...r, upvotes: newUpvotes } : r
+              )
+            );
+          })
+          .catch((error) => console.error("Error saving upvote:", error));
 
         return { ...reply, upvotes: newUpvotes };
       }
@@ -65,9 +85,6 @@ function PostDetails() {
     });
 
     setReplies(updatedReplies);
-    setVoteCounts({ ...voteCounts });
-    localStorage.setItem(`replies_${postId}`, JSON.stringify(updatedReplies));
-    localStorage.setItem(`voteCounts_${postId}`, JSON.stringify(voteCounts));
   };
 
   return (

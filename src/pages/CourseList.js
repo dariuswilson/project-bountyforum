@@ -1,4 +1,3 @@
-// src/pages/CourseList.js
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/CourseList.css";
@@ -13,17 +12,22 @@ function CourseList() {
       navigate("/sign-in");
     }
 
+    const currentUser = localStorage.getItem("currentUser");
     const savedJoinedCourses =
-      JSON.parse(localStorage.getItem("joinedCourses")) || [];
+      JSON.parse(localStorage.getItem(`joinedCourses_${currentUser}`)) || [];
     setJoinedCourses(savedJoinedCourses);
   }, [navigate]);
 
-  const handleDeleteCourse = (courseToDelete) => {
+  const handleRemoveCourse = (courseCode) => {
+    const currentUser = localStorage.getItem("currentUser");
     const updatedCourses = joinedCourses.filter(
-      (course) => course.classCode !== courseToDelete.classCode
+      (c) => c.classCode !== courseCode
     );
     setJoinedCourses(updatedCourses);
-    localStorage.setItem("joinedCourses", JSON.stringify(updatedCourses));
+    localStorage.setItem(
+      `joinedCourses_${currentUser}`,
+      JSON.stringify(updatedCourses)
+    );
   };
 
   return (
@@ -32,14 +36,11 @@ function CourseList() {
       {joinedCourses.length > 0 ? (
         <ul>
           {joinedCourses.map((course, index) => (
-            <li key={index} className="course-item">
+            <li key={index}>
               {course.className}
-              <span
-                className="delete-icon"
-                onClick={() => handleDeleteCourse(course)}
-              >
-                🗑️
-              </span>
+              <button onClick={() => handleRemoveCourse(course.classCode)}>
+                Remove
+              </button>
             </li>
           ))}
         </ul>

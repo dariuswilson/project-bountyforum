@@ -1,4 +1,3 @@
-// src/pages/CreateClassroom.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/CreateClassroom.css";
@@ -7,6 +6,7 @@ function CreateClassroom() {
   const [className, setClassName] = useState("");
   const [classCode, setClassCode] = useState("");
   const [description, setDescription] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,6 +19,19 @@ function CreateClassroom() {
   const handleCreateClassroom = (e) => {
     e.preventDefault();
 
+    // Retrieve existing classrooms
+    const existingClassrooms =
+      JSON.parse(localStorage.getItem("classrooms")) || [];
+
+    // Check if the class code is already in use
+    const isCodeTaken = existingClassrooms.some(
+      (classroom) => classroom.classCode === classCode
+    );
+    if (isCodeTaken) {
+      setError("Class code is already in use. Please choose a different code.");
+      return;
+    }
+
     // Create new classroom object
     const newClassroom = {
       className,
@@ -26,29 +39,30 @@ function CreateClassroom() {
       description,
     };
 
-    // Save classroom to available classrooms
-    const existingClassrooms =
-      JSON.parse(localStorage.getItem("classrooms")) || [];
-    existingClassrooms.push(newClassroom);
-    localStorage.setItem("classrooms", JSON.stringify(existingClassrooms));
+    const updatedClassrooms = [...existingClassrooms, newClassroom];
+    localStorage.setItem("classrooms", JSON.stringify(updatedClassrooms));
 
-    // Automatically add created classroom to user's joined courses
-    const joinedCourses =
-      JSON.parse(localStorage.getItem("joinedCourses")) || [];
-    joinedCourses.push(newClassroom);
-    localStorage.setItem("joinedCourses", JSON.stringify(joinedCourses));
+    const currentUser = localStorage.getItem("currentUser");
+    const userCourses =
+      JSON.parse(localStorage.getItem(`joinedCourses_${currentUser}`)) || [];
+    userCourses.push(newClassroom);
+    localStorage.setItem(
+      `joinedCourses_${currentUser}`,
+      JSON.stringify(userCourses)
+    );
 
-    // Reset form fields
     setClassName("");
     setClassCode("");
     setDescription("");
+    setError("");
 
-    alert(`Classroom Created and Joined: ${className}`);
+    alert(`Classroom Created: ${className}`);
   };
 
   return (
     <div className="create-classroom">
       <h2>Create a Classroom</h2>
+      {error && <p className="error">{error}</p>}
       <form onSubmit={handleCreateClassroom}>
         <label htmlFor="className">Class Name:</label>
         <input

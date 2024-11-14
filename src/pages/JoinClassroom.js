@@ -1,4 +1,3 @@
-// src/pages/JoinClassroom.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/JoinClassroom.css";
@@ -7,7 +6,6 @@ function JoinClassroom() {
   const [courseCode, setCourseCode] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [availableCourses, setAvailableCourses] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,27 +13,27 @@ function JoinClassroom() {
     if (!isAuthenticated) {
       navigate("/sign-in");
     }
-
-    // getting available courses from localStorage
-    const storedCourses = JSON.parse(localStorage.getItem("classrooms")) || [];
-    setAvailableCourses(storedCourses);
   }, [navigate]);
 
   const handleJoinCourse = (e) => {
     e.preventDefault();
 
-    const course = availableCourses.find(
-      (c) => c.classCode.toUpperCase() === courseCode.toUpperCase()
-    );
+    const availableCourses =
+      JSON.parse(localStorage.getItem("classrooms")) || [];
+    const currentUser = localStorage.getItem("currentUser");
 
+    const course = availableCourses.find((c) => c.classCode === courseCode);
     if (course) {
-      const joinedCourses =
-        JSON.parse(localStorage.getItem("joinedCourses")) || [];
+      const userCourses =
+        JSON.parse(localStorage.getItem(`joinedCourses_${currentUser}`)) || [];
 
-      if (!joinedCourses.some((c) => c.classCode === course.classCode)) {
-        joinedCourses.push(course);
-        localStorage.setItem("joinedCourses", JSON.stringify(joinedCourses));
-        setSuccess(`Successfully joined course: ${course.className}`);
+      if (!userCourses.some((c) => c.classCode === courseCode)) {
+        userCourses.push(course);
+        localStorage.setItem(
+          `joinedCourses_${currentUser}`,
+          JSON.stringify(userCourses)
+        );
+        setSuccess(`Successfully joined course: ${courseCode}`);
         setError("");
       } else {
         setError("You are already enrolled in this course.");
@@ -44,6 +42,7 @@ function JoinClassroom() {
       setError("Invalid course code.");
       setSuccess("");
     }
+
     setCourseCode("");
   };
 

@@ -8,14 +8,22 @@ function SignIn({ onSignIn }) {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // List of test users
   const handleSignIn = (e) => {
     e.preventDefault();
 
-    const testUsername = "testuser";
-    const testPassword = "testuser";
+    const testUsers = [
+      { username: "testuser", password: "testuser" },
+      { username: "testuser2", password: "testuser2" },
+    ];
 
-    if (username === testUsername && password === testPassword) {
+    const isValidUser = testUsers.some(
+      (user) => user.username === username && user.password === password
+    );
+
+    if (isValidUser) {
       localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("currentUser", username); // Store the current user
       onSignIn();
       navigate("/");
     } else {

@@ -1,0 +1,62 @@
+/* src/styles/ClassroomPosts.css */
+
+.class-posts-container {
+  padding: 20px;
+}
+
+.post-form {
+  margin-bottom: 20px;
+}
+
+.post-form label {
+  display: block;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.post-form input,
+.post-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.post-form button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #219ebc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.post-form button:hover {
+  background-color: #023047;
+}
+
+.posts-list {
+  margin-top: 20px;
+}
+
+.post-item {
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.post-item h3 {
+  margin: 0;
+}
+
+.post-item p {
+  margin: 10px 0;
+}
+
+.post-item small {
+  color: #888;
+}

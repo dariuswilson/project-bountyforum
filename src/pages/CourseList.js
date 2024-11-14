@@ -1,3 +1,4 @@
+// src/pages/CourseList.js
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/CourseList.css";
@@ -30,15 +31,32 @@ function CourseList() {
     );
   };
 
+  const handleViewCourse = (courseCode) => {
+    navigate(`/class-posts/${courseCode}`);
+  };
+
   return (
     <div className="my-courses-container">
       <h2>Your Courses</h2>
       {joinedCourses.length > 0 ? (
         <ul>
           {joinedCourses.map((course, index) => (
-            <li key={index}>
-              {course.className}
-              <button onClick={() => handleRemoveCourse(course.classCode)}>
+            <li key={index} className="course-item">
+              <span
+                className="course-name"
+                onClick={() => handleViewCourse(course.classCode)}
+                style={{
+                  cursor: "pointer",
+                  color: "blue",
+                  textDecoration: "underline",
+                }}
+              >
+                {course.className}
+              </span>
+              <button
+                onClick={() => handleRemoveCourse(course.classCode)}
+                className="remove-button"
+              >
                 Remove
               </button>
             </li>

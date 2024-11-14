@@ -8,6 +8,8 @@ import Leaderboard from "./pages/Leaderboard";
 import PostDetails from "./pages/PostDetails";
 import Header from "./components/Header";
 import SignIn from "./pages/SignIn";
+import ClassroomPosts from "./pages/ClassroomPosts";
+import CourseLeaderboard from "./pages/CourseLeaderboard";
 import "./App.css";
 
 function App() {
@@ -34,8 +36,13 @@ function App() {
           <Route path="/create-classroom" element={<CreateClassroom />} />
           <Route path="/join-classroom" element={<JoinClassroom />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/post/:id" element={<PostDetails />} />
+          <Route
+            path="/leaderboard/:courseCode"
+            element={<CourseLeaderboard />}
+          />
+          <Route path="/class-posts/:courseCode" element={<ClassroomPosts />} />
           <Route path="/sign-in" element={<SignIn onSignIn={handleSignIn} />} />
+          <Route path="/:courseCode/post/:postId" element={<PostDetails />} />
         </Routes>
       </div>
     </Router>

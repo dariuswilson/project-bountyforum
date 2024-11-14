@@ -1,0 +1,94 @@
+/* src/styles/PostDetails.css */
+
+.post-details-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-item {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-item h2 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.post-author {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.replies-section h3 {
+  color: #333;
+  margin-top: 30px;
+}
+
+.reply-item {
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.reply-author {
+  font-style: italic;
+  color: #666;
+}
+
+.vote-controls {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.vote-controls button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 0 5px;
+}
+
+.vote-controls span {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.add-reply-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-reply-form textarea {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+.add-reply-form button {
+  background-color: #219ebc;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-reply-form button:hover {
+  background-color: #0d7495;
+}

@@ -8,36 +8,13 @@ function CourseLeaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
 
   useEffect(() => {
-    const savedPosts =
-      JSON.parse(localStorage.getItem(`posts_${courseCode}`)) || [];
-    const savedReplies =
-      JSON.parse(localStorage.getItem(`replies_${courseCode}`)) || [];
-
-    const userUpvotes = {};
-
-    savedPosts.forEach((post) => {
-      if (post.username) {
-        const upvotes = post.upvotes || 0;
-        userUpvotes[post.username] =
-          (userUpvotes[post.username] || 0) + upvotes;
-      }
-    });
-
-    savedReplies.forEach((reply) => {
-      if (reply.username) {
-        const upvotes = reply.upvotes || 0;
-        userUpvotes[reply.username] =
-          (userUpvotes[reply.username] || 0) + upvotes;
-      }
-    });
-
-    // Sort users by upvotes in descending order
-    const sortedUsers = Object.entries(userUpvotes)
-      .map(([username, upvotes]) => ({ username, upvotes }))
-      .sort((a, b) => b.upvotes - a.upvotes)
-      .slice(0, 10); // Limit to top 10 users
-
-    setLeaderboard(sortedUsers);
+    fetch(`http://localhost:5001/api/upvotes/${courseCode}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Leaderboard data:", data);
+        setLeaderboard(data);
+      })
+      .catch((error) => console.error("Error fetching leaderboard:", error));
   }, [courseCode]);
 
   return (
@@ -47,8 +24,8 @@ function CourseLeaderboard() {
         {leaderboard.length > 0 ? (
           leaderboard.map((user, index) => (
             <li key={index}>
-              <span>{user.username}</span>
-              <span>{user.upvotes} upvotes</span>
+              <span>{user._id}</span>
+              <span>{user.totalUpvotes} upvotes</span>
             </li>
           ))
         ) : (

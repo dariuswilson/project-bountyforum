@@ -10,6 +10,7 @@ function PostDetails() {
   const [newReply, setNewReply] = useState("");
   const [voteCounts, setVoteCounts] = useState({});
   const currentUser = localStorage.getItem("currentUser");
+  const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5001";
 
   useEffect(() => {
     // Fetch the selected post
@@ -19,7 +20,7 @@ function PostDetails() {
     setPost(selectedPost);
 
     // Fetch replies from the backend for the specified postId
-    fetch(`http://localhost:5001/api/replies/${postId}`)
+    fetch(`${API_BASE_URL}/api/replies/${postId}`)
       .then((response) => response.json())
       .then((data) => setReplies(data))
       .catch((error) => console.error("Error fetching replies:", error));
@@ -33,7 +34,7 @@ function PostDetails() {
       username: currentUser,
     };
 
-    fetch("http://localhost:5001/api/replies", {
+    fetch(`${API_BASE_URL}/api/replies`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -55,7 +56,7 @@ function PostDetails() {
         const newUpvotes = isUpvote ? reply.upvotes + 1 : reply.upvotes - 1;
 
         // Send a POST request to save the updated upvote count
-        fetch("http://localhost:5001/api/upvotes", {
+        fetch(`${API_BASE_URL}/api/upvotes`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

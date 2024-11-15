@@ -11,8 +11,14 @@ function ClassroomPosts() {
   const [description, setDescription] = useState("");
   const [showForm, setShowForm] = useState(false);
 
+  console.log("API_BASE_URL:", API_BASE_URL);
   useEffect(() => {
     // Fetch posts from the backend API
+
+    console.log(
+      "Fetching posts from:",
+      `${API_BASE_URL}/api/posts/${courseCode}`
+    ); // Log the URL being used
     fetch(`${API_BASE_URL}/api/posts/${courseCode}`)
       .then((response) => response.json())
       .then((data) => setPosts(data))

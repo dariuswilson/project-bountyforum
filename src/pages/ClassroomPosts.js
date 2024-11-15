@@ -88,8 +88,8 @@ function ClassroomPosts() {
         {posts.length > 0 ? (
           posts.map((post) => (
             <Link
-              key={post.id}
-              to={`/${courseCode}/post/${post.id}`}
+              key={post._id}
+              to={`/${courseCode}/post/${post._id}}`}
               className="post-item-link"
             >
               <div className="post-item">

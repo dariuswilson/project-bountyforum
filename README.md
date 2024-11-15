@@ -1,6 +1,44 @@
-# Getting Started with Create React App
+# BountyForum React Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Description:
+BountyForum is a lighthearted course forum designed to boost class engagement through a unique bounty points system. This innovative approach allows students to attach bounty points to their questions, incentivizing peers to provide helpful answers. By earning points for their contributions, students are encouraged to participate actively, fostering a dynamic and collaborative learning environment.
+
+The integration of leaderboards, badges, and a point exchange system adds an extra layer of motivation, making the forum not only educational but also engaging and fun.
+
+This project is for college students who want a fun way to engage more in class forums, our project is a forum system with a bounty points system that makes asking and answering questions way more interactive. It motivates students by letting them earn points for helpful answers and attaching points to their own questions to get faster responses. Unlike other forums like Piazza or Moodle, ours is all about making learning fun and rewarding, with leaderboards, badges, and an easy-to-use setup that boosts participation and collaboration.
+
+## Project Components Description:
+### Bounty Point System: 
+Students can post questions and attach bounty points, incentivizing others to answer. Bounty points will be displayed next to each question, creating an interactive atmosphere where users are encouraged to provide helpful answers to earn points.
+
+### Leaderboard and Badges: 
+The leaderboard will encourage healthy competition by showing the most active users in the class. Badges earned for answering questions or consistently participating will provide additional motivation for students to engage.
+
+### Question and Answer Interface: 
+The forum will feature a clean, intuitive feed where students can ask questions, post answers, and track bounty claims in real-time.
+
+### Backend Infrastructure: 
+The back-end will handle user authentication, point transactions, and leaderboard updates. A lightweight database (SQLite for the MVP) will store user data, questions, answers, and bounty points. Data retrieval and real-time updates will be facilitated using efficient database queries and asynchronous API calls.
+
+## Flow of the Bounty Points System:
+A student asks a question → Earns 0.5 points immediately.
+
+Other students view the question → Can upvote or answer.
+
+Student answers a question → Earns 5 points for providing an answer.
+
+Upvotes → Each upvote on a question or answer grants the poster 1 additional point.
+
+Bounty: Instructors or students may assign additional bounty points to difficult questions. The responder who solves the question will automatically receive these points when their answer is marked as correct.
+
+Tracking: All points earned will be tracked on the user’s profile page, and leaderboards will display the top contributors in the class.
+
+## Link to Vercel App:
+https://project-bountyforum.vercel.app/
+
+## Login Credentials
+username: testuser
+password: testuser
 
 ## Available Scripts
 
@@ -11,60 +49,3 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

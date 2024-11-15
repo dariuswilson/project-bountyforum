@@ -1,4 +1,3 @@
-// src/pages/PostDetails.js
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/PostDetails.css";
@@ -16,7 +15,7 @@ function PostDetails() {
     // Fetch the selected post
     const savedPosts =
       JSON.parse(localStorage.getItem(`posts_${courseCode}`)) || [];
-    const selectedPost = savedPosts.find((p) => p.id === postId);
+    const selectedPost = savedPosts.find((p) => p._id === postId);
     setPost(selectedPost);
 
     // Fetch replies from the backend for the specified postId
@@ -52,7 +51,7 @@ function PostDetails() {
 
   const handleVote = async (replyId, type) => {
     const updatedReplies = replies.map((reply) => {
-      if (reply.id === replyId) {
+      if (reply._id === replyId) {
         const isUpvote = type === "up";
         const newUpvotes = isUpvote ? reply.upvotes + 1 : reply.upvotes - 1;
 
@@ -76,7 +75,7 @@ function PostDetails() {
             // Update state only after successful save
             setReplies((prevReplies) =>
               prevReplies.map((r) =>
-                r.id === replyId ? { ...r, upvotes: newUpvotes } : r
+                r._id === replyId ? { ...r, upvotes: newUpvotes } : r
               )
             );
           })
@@ -106,14 +105,15 @@ function PostDetails() {
       <div className="replies-section">
         <h3>Replies</h3>
         {replies.map((reply) => (
-          <div key={reply.id} className="reply-item">
+          <div key={reply._id} className="reply-item">
+            {" "}
             <p className="reply-author">Replied by: {reply.username}</p>
             <p>{reply.text}</p>
             <small>{reply.date}</small>
             <div className="vote-controls">
-              <button onClick={() => handleVote(reply.id, "up")}>👍</button>
+              <button onClick={() => handleVote(reply._id, "up")}>👍</button>
               <span>{reply.upvotes}</span>
-              <button onClick={() => handleVote(reply.id, "down")}>👎</button>
+              <button onClick={() => handleVote(reply._id, "down")}>👎</button>
             </div>
           </div>
         ))}

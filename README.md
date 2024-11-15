@@ -21,11 +21,16 @@ The forum will feature a clean, intuitive feed where students can ask questions,
 The back-end will handle user authentication, point transactions, and leaderboard updates. A lightweight database (SQLite for the MVP) will store user data, questions, answers, and bounty points. Data retrieval and real-time updates will be facilitated using efficient database queries and asynchronous API calls.
 
 ## Flow of the Bounty Points System:
-Student asks a question → Earns 0.5 points immediately.
+A student asks a question → Earns 0.5 points immediately.
+
 Other students view the question → Can upvote or answer.
+
 Student answers a question → Earns 5 points for providing an answer.
+
 Upvotes → Each upvote on a question or answer grants the poster 1 additional point.
+
 Bounty: Instructors or students may assign additional bounty points to difficult questions. The responder who solves the question will automatically receive these points when their answer is marked as correct.
+
 Tracking: All points earned will be tracked on the user’s profile page, and leaderboards will display the top contributors in the class.
 
 ## Link to Vercel App:

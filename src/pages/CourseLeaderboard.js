@@ -6,9 +6,10 @@ import "../styles/Leaderboard.css";
 function CourseLeaderboard() {
   const { courseCode } = useParams();
   const [leaderboard, setLeaderboard] = useState([]);
+  const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5001";
 
   useEffect(() => {
-    fetch(`http://localhost:5001/api/upvotes/${courseCode}`)
+    fetch(`${API_BASE_URL}/api/upvotes/${courseCode}`)
       .then((response) => response.json())
       .then((data) => {
         console.log("Leaderboard data:", data);

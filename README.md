@@ -5,6 +5,8 @@ BountyForum is a lighthearted course forum designed to boost class engagement th
 
 The integration of leaderboards, badges, and a point exchange system adds an extra layer of motivation, making the forum not only educational but also engaging and fun.
 
+This project is for college students who want a fun way to engage more in class forums, our project is a forum system with a bounty points system that makes asking and answering questions way more interactive. It motivates students by letting them earn points for helpful answers and attaching points to their own questions to get faster responses. Unlike other forums like Piazza or Moodle, ours is all about making learning fun and rewarding, with leaderboards, badges, and an easy-to-use setup that boosts participation and collaboration.
+
 ## Link to Vercel App:
 https://project-bountyforum.vercel.app/
 

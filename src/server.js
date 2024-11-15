@@ -6,12 +6,13 @@ require("dotenv").config();
 const app = express();
 
 // CORS configuration
-const corsOptions = {
-  origin: process.env.FRONTEND_URL || "http://localhost:3000",
-  optionsSuccessStatus: 200,
-};
+// const corsOptions = {
+//   origin: process.env.FRONTEND_URL || "http://localhost:3000",
+//   optionsSuccessStatus: 200,
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors()); // Allow all origins temporarily for testing
 app.use(express.json());
 
 // Import routes

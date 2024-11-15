@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const Post = require("../../models/Post");
 
-// Get all posts for a specific course
+// Route to get posts by course code
 router.get("/:courseCode", async (req, res) => {
   try {
     const posts = await Post.find({ courseCode: req.params.courseCode });

@@ -18,10 +18,14 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "node src/server.js",
+    "start": "export NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
     "build": "export NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "engines": {
+    "node": "22.11.0",
+    "npm": "10.9.0"
   },
   "eslintConfig": {
     "extends": [

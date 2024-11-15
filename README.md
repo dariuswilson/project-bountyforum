@@ -5,7 +5,12 @@ BountyForum is a lighthearted course forum designed to boost class engagement th
 
 The integration of leaderboards, badges, and a point exchange system adds an extra layer of motivation, making the forum not only educational but also engaging and fun.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Link to Vercel App:
+https://project-bountyforum.vercel.app/
+
+## Login Credentials
+username: testuser
+password: testuser
 
 ## Available Scripts
 

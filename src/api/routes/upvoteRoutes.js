@@ -26,7 +26,7 @@ router.get("/:courseCode", async (req, res) => {
   }
 });
 
-// Fetch replies with current upvotes for a specific post
+// Fetch replies with current upvotes for a specific post.
 router.get("/replies/:postId", async (req, res) => {
   const { postId } = req.params;
 

@@ -11,11 +11,14 @@ This project is for college students who want a fun way to engage more in class 
 ### Bounty Point System: 
 Students can post questions and attach bounty points, incentivizing others to answer. Bounty points will be displayed next to each question, creating an interactive atmosphere where users are encouraged to provide helpful answers to earn points.
 
-Leaderboard and Badges:  The leaderboard will encourage healthy competition by showing the most active users in the class. Badges earned for answering questions or consistently participating will provide additional motivation for students to engage.
+### Leaderboard and Badges: 
+The leaderboard will encourage healthy competition by showing the most active users in the class. Badges earned for answering questions or consistently participating will provide additional motivation for students to engage.
 
-Question and Answer Interface: The forum will feature a clean, intuitive feed where students can ask questions, post answers, and track bounty claims in real-time.
+### Question and Answer Interface: 
+The forum will feature a clean, intuitive feed where students can ask questions, post answers, and track bounty claims in real-time.
 
-Backend Infrastructure: The back-end will handle user authentication, point transactions, and leaderboard updates. A lightweight database (SQLite for the MVP) will store user data, questions, answers, and bounty points. Data retrieval and real-time updates will be facilitated using efficient database queries and asynchronous API calls.
+### Backend Infrastructure: 
+The back-end will handle user authentication, point transactions, and leaderboard updates. A lightweight database (SQLite for the MVP) will store user data, questions, answers, and bounty points. Data retrieval and real-time updates will be facilitated using efficient database queries and asynchronous API calls.
 
 ## Link to Vercel App:
 https://project-bountyforum.vercel.app/

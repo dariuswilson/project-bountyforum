@@ -37,6 +37,7 @@ function ClassroomPosts() {
     // Send the new post to the backend API
     fetch(`${API_BASE_URL}/api/posts`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },

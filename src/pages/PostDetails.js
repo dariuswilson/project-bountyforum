@@ -36,6 +36,7 @@ function PostDetails() {
 
     fetch(`${API_BASE_URL}/api/replies`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -58,6 +59,7 @@ function PostDetails() {
         // Send a POST request to save the updated upvote count
         fetch(`${API_BASE_URL}/api/upvotes`, {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },

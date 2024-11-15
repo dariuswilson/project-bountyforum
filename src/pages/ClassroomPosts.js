@@ -1,7 +1,8 @@
-// src/pages/ClassroomPosts.js
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import "../styles/ClassroomPosts.css";
+
+const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5001";
 
 function ClassroomPosts() {
   const { courseCode } = useParams();
@@ -11,26 +12,38 @@ function ClassroomPosts() {
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    const savedPosts =
-      JSON.parse(localStorage.getItem(`posts_${courseCode}`)) || [];
-    setPosts(savedPosts);
+    // Fetch posts from the backend API
+    fetch(`${API_BASE_URL}/api/posts/${courseCode}`)
+      .then((response) => response.json())
+      .then((data) => setPosts(data))
+      .catch((error) => console.error("Error fetching posts:", error));
   }, [courseCode]);
 
   const handleCreatePost = (e) => {
     e.preventDefault();
+
     const newPost = {
-      id: `${courseCode}-${Date.now()}`, // Unique ID for each post
+      courseCode,
       title,
       description,
-      date: new Date().toLocaleString(),
     };
 
-    const updatedPosts = [...posts, newPost];
-    setPosts(updatedPosts);
-    localStorage.setItem(`posts_${courseCode}`, JSON.stringify(updatedPosts));
-    setTitle("");
-    setDescription("");
-    setShowForm(false);
+    // Send the new post to the backend API
+    fetch(`${API_BASE_URL}/api/posts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newPost),
+    })
+      .then((response) => response.json())
+      .then((createdPost) => {
+        setPosts((prevPosts) => [...prevPosts, createdPost]);
+        setTitle("");
+        setDescription("");
+        setShowForm(false);
+      })
+      .catch((error) => console.error("Error creating post:", error));
   };
 
   return (

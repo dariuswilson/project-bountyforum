@@ -17,10 +17,12 @@ app.use(express.json());
 // Import routes
 const upvoteRoutes = require("./api/routes/upvoteRoutes");
 const repliesRoutes = require("./api/routes/repliesRoutes");
+const postsRoutes = require("./api/routes/postsRoutes");
 
 // Use routes
 app.use("/api/upvotes", upvoteRoutes);
 app.use("/api/replies", repliesRoutes);
+app.use("/api/posts", postsRoutes);
 
 // Connect to MongoDB
 mongoose

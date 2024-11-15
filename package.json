@@ -19,6 +19,8 @@
   },
   "scripts": {
     "start": "node src/server.js",
+    "start:backend": "node src/server.js",
+    "start:frontend": "export NODE_OPTIONS=--openssl-legacy-provider && PORT=3000 react-scripts start",
     "build": "export NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

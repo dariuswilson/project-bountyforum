@@ -6,14 +6,11 @@ require("dotenv").config();
 const app = express();
 
 // CORS configuration
-// const corsOptions = {
-//   origin: ["https://project-bountyforum.vercel.app", "http://localhost:3000"],
-//   credentials: true,
-//   optionsSuccessStatus: 200,
-// };
-
-// app.options(cors(corsOptions));
-// app.use(express.json());
+const corsOptions = {
+  origin: ["https://project-bountyforum.vercel.app", "http://localhost:3000"],
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
 app.use(cors());
 app.use(express.json());
 

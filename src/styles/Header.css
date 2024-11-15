@@ -7,11 +7,14 @@
   color: white;
 }
 
+@font-face { font-family: 'SourGummy'; src: url('src\styles\SourGummy-VariableFont_wdth,wght.ttf') format('truetype'); }
+
 .header-title a {
   font-size: 24px;
   color: white;
   text-decoration: none;
   font-weight: bold;
+  font-family: 'SourGummy', sans-serif;
 }
 
 .header-nav a {

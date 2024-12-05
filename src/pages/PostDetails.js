@@ -7,18 +7,31 @@ function PostDetails() {
   const [post, setPost] = useState(null);
   const [replies, setReplies] = useState([]);
   const [newReply, setNewReply] = useState("");
-  const [voteCounts, setVoteCounts] = useState({});
   const currentUser = localStorage.getItem("currentUser");
   const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5001";
 
   useEffect(() => {
-    // Fetch the selected post
+    // Try fetching from localStorage first
     const savedPosts =
       JSON.parse(localStorage.getItem(`posts_${courseCode}`)) || [];
     const selectedPost = savedPosts.find((p) => p._id === postId);
-    setPost(selectedPost);
 
-    // Fetch replies from the backend for the specified postId
+    if (selectedPost) {
+      setPost(selectedPost);
+    } else {
+      // Fetch from backend
+      fetch(`${API_BASE_URL}/api/posts/${postId}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to fetch post from backend");
+          }
+          return response.json();
+        })
+        .then((data) => setPost(data))
+        .catch((error) => console.error("Error fetching post:", error));
+    }
+
+    // Fetch replies from the backend
     fetch(`${API_BASE_URL}/api/replies/${postId}`)
       .then((response) => response.json())
       .then((data) => setReplies(data))
@@ -49,46 +62,6 @@ function PostDetails() {
       .catch((error) => console.error("Error saving reply:", error));
   };
 
-  const handleVote = async (replyId, type) => {
-    const updatedReplies = replies.map((reply) => {
-      if (reply._id === replyId) {
-        const isUpvote = type === "up";
-        const newUpvotes = isUpvote ? reply.upvotes + 1 : reply.upvotes - 1;
-
-        // Send a POST request to save the updated upvote count
-        fetch(`${API_BASE_URL}/api/upvotes`, {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            postId: postId,
-            userId: currentUser,
-            courseCode: courseCode,
-            upvotes: newUpvotes,
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("Upvote saved:", data);
-            // Update state only after successful save
-            setReplies((prevReplies) =>
-              prevReplies.map((r) =>
-                r._id === replyId ? { ...r, upvotes: newUpvotes } : r
-              )
-            );
-          })
-          .catch((error) => console.error("Error saving upvote:", error));
-
-        return { ...reply, upvotes: newUpvotes };
-      }
-      return reply;
-    });
-
-    setReplies(updatedReplies);
-  };
-
   return (
     <div className="post-details-container">
       {post ? (
@@ -106,15 +79,9 @@ function PostDetails() {
         <h3>Replies</h3>
         {replies.map((reply) => (
           <div key={reply._id} className="reply-item">
-            {" "}
             <p className="reply-author">Replied by: {reply.username}</p>
             <p>{reply.text}</p>
             <small>{reply.date}</small>
-            <div className="vote-controls">
-              <button onClick={() => handleVote(reply._id, "up")}>👍</button>
-              <span>{reply.upvotes}</span>
-              <button onClick={() => handleVote(reply._id, "down")}>👎</button>
-            </div>
           </div>
         ))}
       </div>

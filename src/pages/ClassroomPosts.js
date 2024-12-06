@@ -26,8 +26,7 @@ function ClassroomPosts() {
   }, [courseCode]);
 
   const handleCreatePost = (e) => {
-    e.preventDefault();
-
+    const currentUser = localStorage.getItem("currentUser"); // Get username from localStorage
     const newPost = {
       courseCode,
       title,

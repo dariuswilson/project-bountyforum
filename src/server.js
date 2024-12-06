@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 const bodyParser = require("body-parser");
-const signupRoutes = require("./routes/signup");
 
 const app = express();
 
@@ -32,6 +31,7 @@ app.use((req, res, next) => {
 const upvoteRoutes = require("./api/routes/upvoteRoutes");
 const repliesRoutes = require("./api/routes/repliesRoutes");
 const postsRoutes = require("./api/routes/postsRoutes");
+const signupRoutes = require("./api/routes/signup");
 
 // Use routes
 app.use("/api/upvotes", upvoteRoutes);

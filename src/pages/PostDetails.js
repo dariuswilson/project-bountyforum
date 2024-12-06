@@ -20,7 +20,7 @@ function PostDetails() {
       setPost(selectedPost);
     } else {
       // Fetch from backend
-      fetch(`${API_BASE_URL}/api/posts/${postId}`)
+      fetch(`${API_BASE_URL}/api/posts/post/${postId}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error("Failed to fetch post from backend");

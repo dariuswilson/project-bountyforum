@@ -14,7 +14,7 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${API_BASE_URL}/signup`, {
+      const response = await axios.post(`${API_BASE_URL}/sign-up`, {
         email,
         username,
         password,

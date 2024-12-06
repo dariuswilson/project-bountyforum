@@ -32,6 +32,7 @@ function ClassroomPosts() {
       courseCode,
       title,
       description,
+      username: currentUser,
     };
 
     // Send the new post to the backend API

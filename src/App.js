@@ -10,7 +10,7 @@ import Header from "./components/Header";
 import SignIn from "./pages/SignIn";
 import ClassroomPosts from "./pages/ClassroomPosts";
 import CourseLeaderboard from "./pages/CourseLeaderboard";
-import Signup from "./components/Signup";
+import Signup from "./pages/Signup";
 import "./App.css";
 
 function App() {

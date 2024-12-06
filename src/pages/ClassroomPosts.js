@@ -26,7 +26,9 @@ function ClassroomPosts() {
   }, [courseCode]);
 
   const handleCreatePost = (e) => {
-    const currentUser = localStorage.getItem("currentUser"); // Get username from localStorage
+    e.preventDefault();
+
+    const currentUser = localStorage.getItem("currentUser"); // Assuming this is set properly
     const newPost = {
       courseCode,
       title,
@@ -34,7 +36,8 @@ function ClassroomPosts() {
       username: currentUser,
     };
 
-    // Send the new post to the backend API
+    console.log("Creating post with data:", newPost);
+
     fetch(`${API_BASE_URL}/api/posts`, {
       method: "POST",
       credentials: "include",
@@ -43,7 +46,12 @@ function ClassroomPosts() {
       },
       body: JSON.stringify(newPost),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to create post");
+        }
+        return response.json();
+      })
       .then((createdPost) => {
         setPosts((prevPosts) => [...prevPosts, createdPost]);
         setTitle("");

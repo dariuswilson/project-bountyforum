@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
+const bodyParser = require("body-parser");
+const signupRoutes = require("./routes/signup");
 
 const app = express();
 
@@ -13,6 +15,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", req.headers.origin || "*");
@@ -34,6 +37,7 @@ const postsRoutes = require("./api/routes/postsRoutes");
 app.use("/api/upvotes", upvoteRoutes);
 app.use("/api/replies", repliesRoutes);
 app.use("/api/posts", postsRoutes);
+app.use("/api", signupRoutes);
 
 // Connect to MongoDB
 mongoose

@@ -31,13 +31,13 @@ app.use((req, res, next) => {
 const upvoteRoutes = require("./api/routes/upvoteRoutes");
 const repliesRoutes = require("./api/routes/repliesRoutes");
 const postsRoutes = require("./api/routes/postsRoutes");
-const signupRoutes = require("./api/routes/signup");
+const signupRoutes = require("./api/routes/sign-up");
 
 // Use routes
 app.use("/api/upvotes", upvoteRoutes);
 app.use("/api/replies", repliesRoutes);
 app.use("/api/posts", postsRoutes);
-app.use("/api", signupRoutes);
+app.use("/sign-up", signupRoutes);
 
 // Connect to MongoDB
 mongoose

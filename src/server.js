@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 const upvoteRoutes = require("./api/routes/upvoteRoutes");
 const repliesRoutes = require("./api/routes/repliesRoutes");
 const postsRoutes = require("./api/routes/postsRoutes");
-const signupRoutes = require("./api/routes/sign-up");
+const signupRoutes = require("./api/routes/signup");
 
 // Use routes
 app.use("/api/upvotes", upvoteRoutes);

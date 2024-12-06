@@ -32,12 +32,13 @@ const upvoteRoutes = require("./api/routes/upvoteRoutes");
 const repliesRoutes = require("./api/routes/repliesRoutes");
 const postsRoutes = require("./api/routes/postsRoutes");
 const signupRoutes = require("./api/routes/signup");
-
+const signinRoutes = require("./api/routes/signin");
 // Use routes
 app.use("/api/upvotes", upvoteRoutes);
 app.use("/api/replies", repliesRoutes);
 app.use("/api/posts", postsRoutes);
 app.use("/sign-up", signupRoutes);
+app.use("/sign-in", signinRoutes);
 
 // Connect to MongoDB
 mongoose

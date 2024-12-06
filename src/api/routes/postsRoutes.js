@@ -28,12 +28,13 @@ router.get("/:courseCode", async (req, res) => {
 
 // Create a new post
 router.post("/", async (req, res) => {
-  const { courseCode, title, description } = req.body;
+  const { courseCode, title, description, username } = req.body; // Include username
   try {
     const newPost = new Post({
       courseCode,
       title,
       description,
+      username,
       date: new Date().toLocaleString(),
     });
     await newPost.save();

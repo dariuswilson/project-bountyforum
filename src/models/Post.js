@@ -13,6 +13,10 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  username: {
+    type: String,
+    required: true,
+  },
   date: {
     type: String,
     default: () => new Date().toLocaleString(), // Store date as a string in a readable format

@@ -94,6 +94,7 @@ function ClassroomPosts() {
             >
               <div className="post-item">
                 <h3>{post.title}</h3>
+                <p>Posted by: {post.username}</p>
                 <p>{post.description}</p>
                 <small>{post.date}</small>
               </div>

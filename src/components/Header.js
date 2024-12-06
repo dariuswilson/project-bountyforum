@@ -18,7 +18,10 @@ function Header({ isAuthenticated, onSignOut }) {
             Signed In (Sign Out)
           </span>
         ) : (
-          <Link to="/sign-in">Sign In</Link>
+          <>
+            <Link to="/sign-in">Sign In</Link>
+            <Link to="/sign-up">Sign Up</Link>
+          </>
         )}
       </nav>
     </header>

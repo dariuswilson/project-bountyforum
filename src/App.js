@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import SignIn from "./pages/SignIn";
 import ClassroomPosts from "./pages/ClassroomPosts";
 import CourseLeaderboard from "./pages/CourseLeaderboard";
+import Signup from "./components/Signup";
 import "./App.css";
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
             element={<CourseLeaderboard />}
           />
           <Route path="/class-posts/:courseCode" element={<ClassroomPosts />} />
+          <Route path="/sign-up" element={<Signup />} />
           <Route path="/sign-in" element={<SignIn onSignIn={handleSignIn} />} />
           <Route path="/:courseCode/post/:postId" element={<PostDetails />} />
         </Routes>

@@ -3,23 +3,31 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #f1b4d8;
-  color: white;
+  background-color: #f4f4f4;
 }
 
-.header-title a {
+.header-title {
   font-size: 24px;
-  color: white;
-  text-decoration: none;
   font-weight: bold;
 }
 
-.header-nav a {
-  margin-left: 20px;
-  color: white;
-  text-decoration: none;
+.header-nav {
+  display: flex;
+  gap: 15px;
 }
 
-.header-nav a:hover {
+.header-nav a,
+.header-nav span {
+  text-decoration: none;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.header-nav a:hover,
+.header-nav span:hover {
   text-decoration: underline;
+}
+
+.signed-in {
+  color: #ff0000;
 }
